@@ -1,10 +1,8 @@
 import React from 'react';
-// import useLocalStorage from 'hooks/useLocaStorage';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import shortId from 'shortid';
-import PropTypes from 'prop-types';
 // import IconButton from 'components/IconButton/IconButton';
 
 import {
@@ -82,10 +80,6 @@ const ContactForm = ({ onAddContact }) => {
       </Form>
     </Formik>
   );
-};
-
-PropTypes.ContactForm = {
-  onAddContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

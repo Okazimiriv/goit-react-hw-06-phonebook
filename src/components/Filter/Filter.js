@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import shortId from 'shortid';
 import { FilterBlock, FilterLabel, FilterInput } from './Filter.styled';
 
@@ -24,8 +23,3 @@ const Filter = ({ value, onChange }) => {
 };
 
 export default Filter;
-
-PropTypes.Filter = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
