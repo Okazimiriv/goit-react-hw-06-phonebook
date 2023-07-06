@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
-
+// import PropTypes from 'prop-types';
 import { ReactComponent as DeleteIcon } from '../../icons/remove.svg';
 import { ButtonIcon } from '../IconButton/IconButton.styled';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
 
 import {
   ContactListBlock,
@@ -11,7 +12,9 @@ import {
   // ContactButton,
 } from './ContactList.styled';
 
-const ContactList = ({ contacts, onDeleteContact }) => {
+const ContactList = ({ onDeleteContact }) => {
+  const contacts = useSelector(getContacts);
+
   return (
     <ContactListBlock>
       {contacts.map(contact => {
@@ -22,9 +25,6 @@ const ContactList = ({ contacts, onDeleteContact }) => {
             <ContactInfo>
               {name}:<ContactName>{number}</ContactName>
             </ContactInfo>
-            {/* <ContactButton onClick={() => onDeleteContact(id)} type="button">
-              Delete
-            </ContactButton> */}
             <ButtonIcon onClick={() => onDeleteContact(id)}>
               <DeleteIcon width="32" height="32" fill="teal"></DeleteIcon>
             </ButtonIcon>
@@ -35,16 +35,16 @@ const ContactList = ({ contacts, onDeleteContact }) => {
   );
 };
 
-PropTypes.ContactList = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
+// PropTypes.ContactList = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     })
+//   ),
 
-  onDeleteContact: PropTypes.func.isRequired,
-};
+//   onDeleteContact: PropTypes.func.isRequired,
+// };
 
 export default ContactList;

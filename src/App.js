@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
-
+import { useDispatch } from 'react-redux';
 import initialContacts from '../src/contacts.json';
 
 const CONTACTS_KEY = 'contacts';
@@ -26,18 +26,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
   }, [contacts]);
-
-  //   componentDidMount() {
-  //     const contacts = JSON.parse(localStorage.getItem(CONTACTS_KEY));
-  //     if (contacts) {
-  //       this.setState({ contacts: contacts });
-  //     }
-  //   }
-  //   componentDidUpdate(prevProps, prevState) {
-  //     if (this.state.contacts !== prevState.contacts) {
-  //       localStorage.setItem(CONTACTS_KEY, JSON.stringify(this.state.contacts));
-  //     }
-  //   }
 
   const onContactFormSubmit = contactData => {
     const id = shortId.generate();
@@ -61,13 +49,13 @@ function App() {
     setFilter(event.target.value.toLowerCase().trim());
   };
 
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
+  // const getVisibleContacts = () => {
+  //   const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().trim().includes(normalizedFilter)
-    );
-  };
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().trim().includes(normalizedFilter)
+  //   );
+  // };
 
   const deleteContact = contactId => {
     setContacts(contacts.filter(contact => contact.id !== contactId));
@@ -86,7 +74,7 @@ function App() {
       <h2>Contacts</h2>
       <Filter value={filter} onChange={changeFilter} />
       <ContactList
-        contacts={getVisibleContacts()}
+        // contacts={getVisibleContacts()}
         onDeleteContact={deleteContact}
       />
     </Container>
