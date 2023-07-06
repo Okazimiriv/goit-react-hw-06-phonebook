@@ -49,13 +49,13 @@ function App() {
     setFilter(event.target.value.toLowerCase().trim());
   };
 
-  // const getVisibleContacts = () => {
-  //   const normalizedFilter = filter.toLowerCase();
+  const getVisibleContacts = () => {
+    const normalizedFilter = filter.toLowerCase();
 
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().trim().includes(normalizedFilter)
-  //   );
-  // };
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().trim().includes(normalizedFilter)
+    );
+  };
 
   const deleteContact = contactId => {
     setContacts(contacts.filter(contact => contact.id !== contactId));
