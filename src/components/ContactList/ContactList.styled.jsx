@@ -37,41 +37,23 @@ export const ContactButton = styled.button`
   }
 `;
 
-// .ContactList {
-//   padding-left: 0px;
-// }
+export const DeleteButton = styled.button` 
+  margin: 0;
+  margin-right: 50px;
+  padding: 10px;
+  border: none;   
+  background-color: transparent;
+  cursor: pointer;
 
-// .item {
-//   width: 400px;
-//   padding: 5px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   margin-bottom: 10px;
-//   background-color: #fff;
-// }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
 
-// .contactInfo {
-//   display: flex;
-//   font-size: 18px;
-//   /* font-weight: bold; */
-// }
+  transform: scale(1);
+  transition: transform 200ms;
 
-// .name {
-//   margin-left: 15px;
-// }
-
-// .button {
-//   padding: 5px 20px;
-
-//   background-color: teal;
-//   border: none;
-//   outline: none;
-//   color: aliceblue;
-//   border-radius: 5px;
-
-//   &:hover,
-//   &:focus {
-//     background-color: #008080a8;
-//   }
-// }
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+  `;

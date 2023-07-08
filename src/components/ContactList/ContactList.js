@@ -1,13 +1,14 @@
-import { ReactComponent as DeleteIcon } from '../../icons/remove.svg';
-import { ButtonIcon } from '../IconButton/IconButton.styled';
+// import { ReactComponent as DeleteIcon } from '../../icons/remove.svg';
+// import { DeleteButton } from '../ContactList/ContactList.styled';
 import { useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-
+import { IoClose } from 'react-icons/io5';
 import {
   ContactListBlock,
   ContactItem,
   ContactInfo,
   ContactName,
+  DeleteButton,
   // ContactButton,
 } from './ContactList.styled';
 
@@ -24,9 +25,12 @@ const ContactList = ({ onDeleteContact }) => {
             <ContactInfo>
               {name}:<ContactName>{number}</ContactName>
             </ContactInfo>
-            <ButtonIcon onClick={() => onDeleteContact(id)}>
-              <DeleteIcon width="32" height="32" fill="teal"></DeleteIcon>
-            </ButtonIcon>
+            <DeleteButton
+              type="button"
+              // onClick={() => dispatch(deleteContact(id))}
+            >
+              <IoClose size={32} fill="teal" />
+            </DeleteButton>
           </ContactItem>
         );
       })}

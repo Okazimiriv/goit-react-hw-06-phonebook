@@ -1,15 +1,15 @@
-import React from 'react';
-// import { IconButton } from './IconButton.styled';
+// import React from 'react';
+// // import { IconButton } from './IconButton.styled';
 
-const IconButton = ({ children, onClick, ...allyProps }) => (
-  <button type="button" onClick={onClick} {...allyProps}>
-    {children}
-  </button>
-);
+// const IconButton = ({ children, onClick, ...allyProps }) => (
+//   <button type="button" onClick={onClick} {...allyProps}>
+//     {children}
+//   </button>
+// );
 
-IconButton.defaultProps = {
-  onClick: () => null,
-  children: null,
-};
+// IconButton.defaultProps = {
+//   onClick: () => null,
+//   children: null,
+// };
 
-export default IconButton;
+// export default IconButton;
