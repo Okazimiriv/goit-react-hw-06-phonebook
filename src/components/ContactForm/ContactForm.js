@@ -5,7 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsSlice';
 
-import { Form, Label, Input, StyledButton } from './ContactForm.styled';
+import {
+  Form,
+  Label,
+  Input,
+  StyledButton,
+  ErrorMessage,
+} from './ContactForm.styled';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -91,6 +97,8 @@ const ContactForm = () => {
   const resetForm = () => {
     setName('');
     setNumber('');
+    setNumberDirty(false);
+    setNameDirty(false);
   };
 
   return (
@@ -114,9 +122,7 @@ const ContactForm = () => {
           onChange={e => handleChangeName(e)}
           onBlur={e => blurHandler(e)}
         />
-        {nameDirty && nameError && (
-          <div style={{ color: 'red' }}>{nameError}</div>
-        )}
+        {nameDirty && nameError && <ErrorMessage>{nameError}</ErrorMessage>}
         <Label>Number</Label>
         <Input
           type="tel"
@@ -130,7 +136,7 @@ const ContactForm = () => {
           onBlur={e => blurHandler(e)}
         />
         {numberDirty && numberError && (
-          <div style={{ color: 'red' }}>{numberError}</div>
+          <ErrorMessage>{numberError}</ErrorMessage>
         )}
         <StyledButton type="submit">Add contact</StyledButton>
       </Form>
