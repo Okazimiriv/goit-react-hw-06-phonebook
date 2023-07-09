@@ -45,18 +45,18 @@ const ContactForm = () => {
       toast.warn(`${newContact.name} is already in contacts`, {
         position: toast.POSITION.TOP_CENTER,
       });
+      resetForm();
       return;
     }
 
     dispatch(addContact(name, number));
+    resetForm();
+  };
+
+  const resetForm = () => {
     setName('');
     setNumber('');
   };
-
-  // const resetForm = () => {
-  //   setName('');
-  //   setNumber('');
-  // };
 
   return (
     <>
