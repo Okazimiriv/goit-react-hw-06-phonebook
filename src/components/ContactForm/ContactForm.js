@@ -51,11 +51,9 @@ const ContactForm = () => {
 
   const handleChangeNumber = e => {
     setNumber(e.target.value);
-    const reNumber =
-      '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}';
-    // if (!Number(e.target.value)) {
+    const reNumber = /\(?\d{3}\)?([-\/\.])\d{2}\1\d{2}/;
     if (!reNumber.test(String(e.target.value))) {
-      setNumberError('Phone number is not correct');
+      setNumberError('The expected format is like ###-##-##');
     } else {
       setNumberError('');
     }
