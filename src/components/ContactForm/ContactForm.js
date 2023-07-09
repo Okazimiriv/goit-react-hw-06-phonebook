@@ -10,16 +10,58 @@ import { Form, Label, Input, StyledButton } from './ContactForm.styled';
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [nameDirty, setNameDirty] = useState(false);
+  const [numberDirty, setNumberDirty] = useState(false);
+  const [nameError, setNameError] = useState(
+    'Please, enter the name of the contact'
+  );
+  const [numberError, setNumberError] = useState('Please, enter phone number');
+
   const dispatch = useDispatch();
   const listContacts = useSelector(getContacts);
 
-  const handleChange = evt => {
-    switch (evt.target.name) {
+  // const handleChange = evt => {
+  //   switch (evt.target.name) {
+  //     case 'name':
+  //       setName(evt.target.value);
+  //       break;
+  //     case 'number':
+  //       setNumber(evt.target.value);
+  //       break;
+  //     default:
+  //       return;
+  //   }
+  // };
+
+  const handleChangeName = e => {
+    setName(e.target.value);
+    const reName = "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+    if (!reName.test(String(e.target.value).toLowerCase())) {
+      setNameError('Name is not correct');
+    } else {
+      setNameError('');
+    }
+  };
+
+  const handleChangeNumber = e => {
+    setNumber(e.target.value);
+    const reNumber =
+      '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}';
+    // if (!Number(e.target.value)) {
+    if (!reNumber.test(String(e.target.value))) {
+      setNumberError('Phone number is not correct');
+    } else {
+      setNumberError('');
+    }
+  };
+
+  const blurHandler = e => {
+    switch (e.target.name) {
       case 'name':
-        setName(evt.target.value);
+        setNameDirty(true);
         break;
       case 'number':
-        setNumber(evt.target.value);
+        setNumberDirty(true);
         break;
       default:
         return;
@@ -28,13 +70,6 @@ const ContactForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
-    if (!name.trim() || !number.trim()) {
-      return toast.warn('Please, fill the field.', {
-        position: toast.POSITION.TOP_CENTER,
-        icon: false,
-      });
-    }
 
     const newContact = { name, number };
     if (
@@ -76,8 +111,12 @@ const ContactForm = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          onChange={handleChange}
+          onChange={e => handleChangeName(e)}
+          onBlur={e => blurHandler(e)}
         />
+        {nameDirty && nameError && (
+          <div style={{ color: 'red' }}>{nameError}</div>
+        )}
         <Label>Number</Label>
         <Input
           type="tel"
@@ -87,8 +126,12 @@ const ContactForm = () => {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          onChange={handleChange}
+          onChange={e => handleChangeNumber(e)}
+          onBlur={e => blurHandler(e)}
         />
+        {numberDirty && numberError && (
+          <div style={{ color: 'red' }}>{numberError}</div>
+        )}
         <StyledButton type="submit">Add contact</StyledButton>
       </Form>
     </>
