@@ -49,13 +49,14 @@ const ContactForm = () => {
     }
 
     dispatch(addContact(name, number));
-    resetForm();
-  };
-
-  const resetForm = () => {
     setName('');
     setNumber('');
   };
+
+  // const resetForm = () => {
+  //   setName('');
+  //   setNumber('');
+  // };
 
   return (
     <>
@@ -70,7 +71,7 @@ const ContactForm = () => {
         <Input
           type="text"
           name="name"
-          // value={name}
+          value={name}
           placeholder="Harry Potter"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
@@ -81,7 +82,7 @@ const ContactForm = () => {
         <Input
           type="tel"
           name="number"
-          // value={number}
+          value={number}
           placeholder="765-43-21"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
