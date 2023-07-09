@@ -1,19 +1,26 @@
 import React from 'react';
-import shortId from 'shortid';
+import { useDispatch, useSelector } from 'react-redux';
 import { FilterBlock, FilterLabel, FilterInput } from './Filter.styled';
+import { getFilter } from 'redux/selectors';
 
-const Filter = ({ value, onChange }) => {
-  const id = shortId.generate();
+import { filterContacts } from 'redux/filterSlice';
+
+const Filter = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const handleInput = event => {
+    dispatch(filterContacts(event.target.value));
+  };
 
   return (
     <FilterBlock>
-      <FilterLabel htmlFor={id}>Find Contacts by name</FilterLabel>
+      <FilterLabel>Find Contacts by name</FilterLabel>
       <FilterInput
-        id={id}
         type="text"
         name="filter"
-        value={value}
-        onChange={onChange}
+        value={filter}
+        onChange={handleInput}
         placeholder="Enter contact's name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title=" Enter name may contain only letters, apostrophe, dash and spaces."

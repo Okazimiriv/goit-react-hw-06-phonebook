@@ -29,7 +29,7 @@ const ContactList = () => {
   return (
     <>
       {contacts.length === 0 && (
-        <Text textAlign="center">There are no any contacts ... </Text>
+        <Text textAlign="center">There are no any contacts ...😕 </Text>
       )}
       <ContactListBlock>
         {contacts.length > 0 &&
