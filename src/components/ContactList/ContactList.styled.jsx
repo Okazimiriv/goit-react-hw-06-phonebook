@@ -57,3 +57,11 @@ export const DeleteButton = styled.button`
   &:focus {
     transform: scale(1.2);
   `;
+
+export const Text = styled.p`
+  font-size: 14px;
+  font-weight: 700;
+
+  text-align: center;
+  margin-bottom: 20px;
+`;

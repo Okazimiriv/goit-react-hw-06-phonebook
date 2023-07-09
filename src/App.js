@@ -12,53 +12,6 @@ import Filter from 'components/Filter';
 // import initialContacts from '../src/contacts.json';
 
 export const App = () => {
-  //   state = {
-  //     contacts: initialContacts,
-  //     filter: '',
-  //   };
-  // const [contacts, setContacts] = useState(
-  //   () => JSON.parse(localStorage.getItem(CONTACTS_KEY)) || initialContacts
-  // );
-  // const [filter, setFilter] = useState('');
-
-  // useEffect(() => {
-  //   localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
-  // }, [contacts]);
-
-  // const onContactFormSubmit = contactData => {
-  //   const id = shortId.generate();
-  //   const { name, number } = contactData;
-  //   const newContact = { id, name, number };
-
-  //   if (
-  //     contacts.find(
-  //       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-  //     )
-  //   ) {
-  //     toast.warn(`${newContact.name} is already in contacts`, {
-  //       position: toast.POSITION.TOP_CENTER,
-  //     });
-  //     return;
-  //   }
-  //   setContacts([...contacts, newContact]);
-  // };
-
-  // const changeFilter = event => {
-  //   setFilter(event.target.value.toLowerCase().trim());
-  // };
-
-  // const getVisibleContacts = () => {
-  //   const normalizedFilter = filter.toLowerCase();
-
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().trim().includes(normalizedFilter)
-  //   );
-  // };
-
-  // const deleteContact = contactId => {
-  //   setContacts(contacts.filter(contact => contact.id !== contactId));
-  // };
-
   return (
     <Container>
       <h1>Phonebook</h1>
