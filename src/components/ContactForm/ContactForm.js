@@ -29,8 +29,15 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (!name.trim() || !number.trim()) {
-      return toast.warn('Please, fill the field.', {
+    if (name.includes(Number(number))) {
+      return toast.warn('Name may contain only letters', {
+        position: toast.POSITION.TOP_CENTER,
+        icon: false,
+      });
+    }
+
+    if (!number.includes(Number(number))) {
+      return toast.warn('Number may contain only numbers', {
         position: toast.POSITION.TOP_CENTER,
         icon: false,
       });
@@ -44,6 +51,7 @@ const ContactForm = () => {
     ) {
       toast.warn(`${newContact.name} is already in contacts`, {
         position: toast.POSITION.TOP_CENTER,
+        icon: false,
       });
       resetForm();
       return;
@@ -83,7 +91,7 @@ const ContactForm = () => {
           type="tel"
           name="number"
           value={number}
-          placeholder="765-43-21"
+          placeholder="123456"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
