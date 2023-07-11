@@ -36,13 +36,6 @@ const ContactForm = () => {
       });
     }
 
-    if (!number.includes(Number(number))) {
-      return toast.warn('Number may contain only numbers', {
-        position: toast.POSITION.TOP_CENTER,
-        icon: false,
-      });
-    }
-
     const newContact = { name, number };
     if (
       listContacts.find(
@@ -75,8 +68,9 @@ const ContactForm = () => {
         style={{ top: '1px' }}
       />
       <Form autoComplete="on" onSubmit={handleSubmit}>
-        <Label>Name</Label>
+        <Label htmlFor="name">Name</Label>
         <Input
+          id="name"
           type="text"
           name="name"
           value={name}
@@ -86,15 +80,15 @@ const ContactForm = () => {
           required
           onChange={handleChange}
         />
-        <Label>Number</Label>
+        <Label htmlFor="number">Number</Label>
         <Input
+          id="number"
           type="phone"
           name="number"
           value={number}
-          placeholder="123456"
-          minlength="6"
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          placeholder="765-43-21"
+          pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
+          title="The phone number format ###-##-##"
           required
           onChange={handleChange}
         />
